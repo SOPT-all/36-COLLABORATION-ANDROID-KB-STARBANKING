@@ -1,0 +1,2 @@
+# 36-COLLABORATION-ANDROID-KB-STARBANKING
+36기 합동세미나 모바일 앱 6팀 KB 스타뱅킹 안드로이드 레포입니다.
