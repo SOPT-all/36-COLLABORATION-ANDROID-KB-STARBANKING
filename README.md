@@ -1,0 +1,2 @@
+# 36-COLLABORATION-ANDROID-KB-STARBANKING
+SOPT 36기 합동세미나 안드로이드 KB 스타뱅킹 레포지토리입니다
