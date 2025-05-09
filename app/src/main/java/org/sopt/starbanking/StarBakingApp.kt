@@ -1,16 +1,21 @@
+package org.sopt.starbanking
+
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import androidx.appcompat.app.AppCompatDelegate
 import timber.log.Timber
 
-@HiltAndroidApp
-class AlamiApplication : Application() {
+class StarBakingApp : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        initTimber()
+        setTimber()
+        setLightMode()
     }
 
-    private fun initTimber() {
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+    private fun setTimber() {
+        Timber.plant(Timber.DebugTree())
+    }
+
+    private fun setLightMode() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
