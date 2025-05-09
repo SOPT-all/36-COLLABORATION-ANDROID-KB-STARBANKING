@@ -3,8 +3,10 @@ package org.sopt.starbanking
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import timber.log.Timber
+import dagger.hilt.android.HiltAndroidApp
 
-class StarBakingApp : Application() {
+@HiltAndroidApp
+class StarBankingApp : Application() {
     override fun onCreate() {
         super.onCreate()
         setTimber()

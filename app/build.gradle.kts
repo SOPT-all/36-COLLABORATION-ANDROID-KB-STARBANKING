@@ -14,11 +14,11 @@ val properties = Properties().apply {
 }
 
 android {
-    namespace = "org.techtown.twosomeheart"
+    namespace = "org.sopt.starbanking"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "org.techtown.twosomeheart"
+        applicationId = "org.sopt.starbanking"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
