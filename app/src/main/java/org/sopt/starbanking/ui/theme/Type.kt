@@ -9,7 +9,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import org.sopt.starbanking.R
 
-
 val kbStarBankingFontBold = FontFamily(Font(R.font.pretendard_bold))
 val kbStarBankingFontSemiBold = FontFamily(Font(R.font.pretendard_semibold))
 val kbStarBankingFontRegular = FontFamily(Font(R.font.pretendard_regular))
@@ -134,4 +133,5 @@ val defaultkbStarBankingTypography = kbStarBankingTypography(
         lineHeight = 11.sp
     )
 )
+
 val LocalkbStarBankingTypographyProvider = staticCompositionLocalOf { defaultkbStarBankingTypography }
