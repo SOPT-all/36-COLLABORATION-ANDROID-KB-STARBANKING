@@ -1,16 +1,12 @@
 package org.sopt.starbanking.presentation.main
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
-import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
 
 
 @Composable
@@ -22,13 +18,11 @@ fun MainScreen(
     )
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun MainScreenContent(
     navigator: MainNavigator,
     modifier: Modifier = Modifier,
 ) {
-    val imeIsShown = WindowInsets.isImeVisible
     Scaffold(
         modifier = modifier,
         content = { padding ->
@@ -37,8 +31,8 @@ private fun MainScreenContent(
                 padding = PaddingValues(
                     start = padding.calculateStartPadding(layoutDirection = LayoutDirection.Ltr),
                     end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
-                    bottom = if (imeIsShown) 0.dp else padding.calculateBottomPadding(),
-                    top = 16.dp
+                    bottom = padding.calculateBottomPadding(),
+                    top = padding.calculateTopPadding()
                 )
             )
         },
