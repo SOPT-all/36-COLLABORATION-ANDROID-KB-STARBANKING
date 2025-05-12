@@ -2,8 +2,8 @@ package org.sopt.starbanking
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import timber.log.Timber
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 @HiltAndroidApp
 class StarBankingApp : Application() {

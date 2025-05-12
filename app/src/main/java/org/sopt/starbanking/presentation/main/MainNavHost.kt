@@ -1,47 +1,38 @@
 package org.sopt.starbanking.presentation.main
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
-import androidx.compose.foundation.layout.isImeVisible
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-
+import androidx.navigation.compose.NavHost
+import org.sopt.starbanking.presentation.home.navigation.homeNavGraph
 
 @Composable
-fun MainScreen(
-    navigator: MainNavigator = rememberMainNavigator()
-) {
-    MainScreenContent(
-        navigator = navigator,
-    )
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun MainScreenContent(
+fun MainNavHost(
     navigator: MainNavigator,
+    padding: PaddingValues,
     modifier: Modifier = Modifier,
 ) {
-    val imeIsShown = WindowInsets.isImeVisible
-    Scaffold(
-        modifier = modifier,
-        content = { padding ->
-            MainNavHost(
-                navigator = navigator,
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        NavHost(
+            navController = navigator.navController,
+            startDestination = navigator.startDestination
+        ) {
+            homeNavGraph(
                 padding = PaddingValues(
                     start = padding.calculateStartPadding(layoutDirection = LayoutDirection.Ltr),
                     end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
-                    bottom = if (imeIsShown) 0.dp else padding.calculateBottomPadding(),
+                    bottom = padding.calculateBottomPadding(),
                     top = 16.dp
                 )
             )
-        },
-    )
-
+        }
+    }
 }
