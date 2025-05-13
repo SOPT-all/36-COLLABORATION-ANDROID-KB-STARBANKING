@@ -50,26 +50,6 @@ data class StarBankingColors(
     val gr2: Color = Gr2,
 )
 
-val defaultStarBankingColors = StarBankingColors(
-    black = CommonBlack,
-    white = CommonWhite,
-    blue1 = MainBlue1,
-    blue2 = MainBlue2,
-    blue3 = MainBlue3,
-    yellow1 = MainYellow1,
-    yellow2 = MainYellow2,
-    yellow3 = MainYellow3,
-    gray1 = Gray1,
-    gray2 = Gray2,
-    gray3 = Gray3,
-    gray4 = Gray4,
-    gray5 = Gray5,
-    gray6 = Gray6,
-    gray7 = Gray7,
-    gray8 = Gray8,
-    gray9 = Gray9,
-    gr1 = Gr1,
-    gr2 = Gr2
-)
+val defaultStarBankingColors = StarBankingColors()
 
 val LocalStarBankingColorsProvider = staticCompositionLocalOf { defaultStarBankingColors }
