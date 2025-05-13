@@ -1,26 +1,41 @@
 package org.sopt.starbanking.presentation.main
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.LayoutDirection
+
 
 @Composable
 fun MainScreen(
-    // TODO: navigator: MainNavigation = rememberMainNavigator()
+    navigator: MainNavigator = rememberMainNavigator()
 ) {
-    Scaffold { paddingValue ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValue),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "MainScreen")
-        }
-    }
+    MainScreenContent(
+        navigator = navigator,
+    )
+}
+
+@Composable
+private fun MainScreenContent(
+    navigator: MainNavigator,
+    modifier: Modifier = Modifier,
+) {
+    Scaffold(
+        modifier = modifier,
+        content = { padding ->
+            MainNavHost(
+                navigator = navigator,
+                padding = PaddingValues(
+                    start = padding.calculateStartPadding(layoutDirection = LayoutDirection.Ltr),
+                    end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
+                    bottom = padding.calculateBottomPadding(),
+                    top = padding.calculateTopPadding()
+                )
+            )
+        },
+    )
+
 }
