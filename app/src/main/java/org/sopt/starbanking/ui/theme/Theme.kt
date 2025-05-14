@@ -16,15 +16,20 @@ object StarBankingTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalStarBankingColorsProvider.current
+
+    val typography: kbStarBankingTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalkbStarBankingTypographyProvider.current
 }
 
 @Composable
 fun StarBankingTheme(
     content: @Composable () -> Unit
 ) {
-    val colors = defaultStarBankingColors
     CompositionLocalProvider(
-        LocalStarBankingColorsProvider provides colors
+        LocalStarBankingColorsProvider provides defaultStarBankingColors,
+        LocalkbStarBankingTypographyProvider provides defaultkbStarBankingTypography
     ) {
         MaterialTheme(
             colorScheme = LightColorScheme,
