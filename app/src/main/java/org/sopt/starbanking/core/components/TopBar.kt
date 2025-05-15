@@ -10,6 +10,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.sopt.starbanking.R
@@ -62,18 +63,18 @@ fun TopBar(state: TopBarState) {
 @Composable
 fun View1(){
     val topBarState = TopBarState(
-        title = "전체계좌조회",
-        navigationIcon = ImageVector.vectorResource(R.drawable.arrow_left),
+        title = stringResource(R.string.TopBar_View1_title),
+        navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left),
         onNavigationClick = { /* 뒤로가기 */ },
         actions = listOf(
             TopBarAction(
                 icon = ImageVector.vectorResource(R.drawable.ic_home),
-                contentDescription = "홈",
+                contentDescription = stringResource(R.string.ic_home_description),
                 onClick = { /* 홈 */ }
             ),
             TopBarAction(
                 icon = ImageVector.vectorResource(R.drawable.ic_menu),
-                contentDescription = "메뉴",
+                contentDescription = stringResource(R.string.ic_menu_description),
                 onClick = { /* 설정 또는 검색 */ }
             )
         )
@@ -85,12 +86,12 @@ fun View1(){
 @Composable
 fun View3(){
     val topBarState = TopBarState(
-        title = "계좌상세정보",
+        title = stringResource(R.string.TopBar_View3_title),
         showNavigationIcon = false,
         actions = listOf(
             TopBarAction(
                 icon = ImageVector.vectorResource(R.drawable.ic_close),
-                contentDescription = "닫기",
+                contentDescription = stringResource(R.string.ic_close_description),
                 onClick = { /* 닫기 */ }
             )
         )
@@ -102,12 +103,12 @@ fun View3(){
 @Composable
 fun View4(){
     val topBarState = TopBarState(
-        title = "계좌이율 보기",
+        title = stringResource(R.string.TopBar_View4_title),
         showNavigationIcon = false,
         actions = listOf(
             TopBarAction(
                 icon = ImageVector.vectorResource(R.drawable.ic_close),
-                contentDescription = "닫기",
+                contentDescription = stringResource(R.string.ic_close_description),
                 onClick = { /* 닫기 */}
             )
         )
