@@ -20,6 +20,7 @@ data class TopBarState(
     val title: String = "",
     val showNavigationIcon: Boolean = true,
     val navigationIcon: ImageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+    val navigationDescription: String = "Navigation",
     val onNavigationClick: (() -> Unit)? = null,
     val actions: List<TopBarAction> = emptyList()
 )
@@ -40,7 +41,7 @@ fun TopBar(state: TopBarState) {
         navigationIcon = {
             if (state.showNavigationIcon && state.onNavigationClick != null) {
                 IconButton(onClick = state.onNavigationClick) {
-                    Icon(imageVector = state.navigationIcon, contentDescription = "Navigation")
+                    Icon(imageVector = state.navigationIcon, contentDescription = state.navigationDescription)
                 }
             }
         },
@@ -65,6 +66,7 @@ fun View1(){
     val topBarState = TopBarState(
         title = stringResource(R.string.TopBar_View1_title),
         navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left),
+        navigationDescription = stringResource(R.string.ic_arrow_left_description),
         onNavigationClick = { /* 뒤로가기 */ },
         actions = listOf(
             TopBarAction(
