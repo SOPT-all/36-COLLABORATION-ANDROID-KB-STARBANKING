@@ -1,18 +1,27 @@
 package org.sopt.starbanking.core.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.R
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
@@ -31,33 +40,66 @@ data class TopBarAction(
     val onClick: () -> Unit
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(state: TopBarState) {
-    TopAppBar(
-        title = {
-            Text(text = state.title, style = StarBankingTheme.typography.title2_L)
-        },
-        navigationIcon = {
+fun CustomTopBar(
+    state: TopBarState,
+    modifier: Modifier = Modifier,
+    height: Dp = 48.dp,
+    backgroundColor: Color = StarBankingTheme.colors.white,
+    contentColor: Color = StarBankingTheme.colors.black
+) {
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        color = backgroundColor,
+        tonalElevation = 0.dp,
+        shadowElevation = 0.dp
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(height)
+                .padding(horizontal = 19.dp), // 좌우 패딩 지정
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Navigation 아이콘
             if (state.showNavigationIcon && state.onNavigationClick != null) {
-                IconButton(onClick = state.onNavigationClick) {
-                    Icon(imageVector = state.navigationIcon, contentDescription = state.navigationDescription)
-                }
+                Icon(
+                    imageVector = state.navigationIcon,
+                    contentDescription = state.navigationDescription,
+                    tint = contentColor,
+                    modifier = Modifier.clickable { state.onNavigationClick.invoke() }
+                )
             }
-        },
-        actions = {
-            state.actions.forEach { action ->
-                IconButton(onClick = action.onClick) {
-                    Icon(imageVector = action.icon, contentDescription = action.contentDescription)
-                }
+
+            // Title
+            Text(
+                text = state.title,
+                style = StarBankingTheme.typography.title2_L,
+                color = contentColor,
+                modifier = Modifier
+                    .weight(1f)
+                    .then(
+                        if (state.showNavigationIcon && state.onNavigationClick != null){
+                            Modifier.padding(start = 4.dp)  // icon ↔ title 간격
+                        } else {
+                            Modifier
+                        }
+                    )
+            )
+
+            // Actions
+            state.actions.forEachIndexed() { index, action ->
+                if (index > 0) Spacer(modifier = Modifier.width(18.dp))
+                Icon(
+                    imageVector = action.icon,
+                    contentDescription = action.contentDescription,
+                    tint = contentColor,
+                    modifier = Modifier
+                        .clickable { action.onClick() }
+                )
             }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = StarBankingTheme.colors.white,
-            titleContentColor = StarBankingTheme.colors.black,
-            navigationIconContentColor = StarBankingTheme.colors.black
-        )
-    )
+        }
+    }
 }
 
 @Preview
@@ -81,7 +123,7 @@ fun View1(){
             )
         )
     )
-    TopBar(topBarState)
+    CustomTopBar(topBarState)
 }
 
 @Preview
@@ -98,7 +140,7 @@ fun View3(){
             )
         )
     )
-    TopBar(topBarState)
+    CustomTopBar(topBarState)
 }
 
 @Preview
@@ -115,5 +157,5 @@ fun View4(){
             )
         )
     )
-    TopBar(topBarState)
+    CustomTopBar(topBarState)
 }
