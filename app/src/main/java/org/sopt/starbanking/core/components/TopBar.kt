@@ -1,13 +1,7 @@
 package org.sopt.starbanking.core.components
 
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,7 +10,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.sopt.starbanking.R
@@ -70,16 +63,16 @@ fun TopBar(state: TopBarState) {
 fun View1(){
     val topBarState = TopBarState(
         title = "전체계좌조회",
-        navigationIcon = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+        navigationIcon = ImageVector.vectorResource(R.drawable.arrow_left),
         onNavigationClick = { /* 뒤로가기 */ },
         actions = listOf(
             TopBarAction(
-                icon = Icons.Default.Home,
+                icon = ImageVector.vectorResource(R.drawable.ic_home),
                 contentDescription = "홈",
                 onClick = { /* 홈 */ }
             ),
             TopBarAction(
-                icon = Icons.Default.Menu,
+                icon = ImageVector.vectorResource(R.drawable.ic_menu),
                 contentDescription = "메뉴",
                 onClick = { /* 설정 또는 검색 */ }
             )
@@ -96,7 +89,7 @@ fun View3(){
         showNavigationIcon = false,
         actions = listOf(
             TopBarAction(
-                icon = Icons.Default.Close,
+                icon = ImageVector.vectorResource(R.drawable.ic_close),
                 contentDescription = "닫기",
                 onClick = { /* 닫기 */ }
             )
@@ -111,10 +104,9 @@ fun View4(){
     val topBarState = TopBarState(
         title = "계좌이율 보기",
         showNavigationIcon = false,
-        navigationIcon = Icons.Default.Close,
         actions = listOf(
             TopBarAction(
-                icon = Icons.Default.Close,
+                icon = ImageVector.vectorResource(R.drawable.ic_close),
                 contentDescription = "닫기",
                 onClick = { /* 닫기 */}
             )
