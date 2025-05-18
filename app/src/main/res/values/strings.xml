@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StarBanking</string>
+    <string name="TopBar_View1_title">전체계좌조회</string>
+    <string name="TopBar_View3_title">계좌상세정보</string>
+    <string name="TopBar_View4_title">계좌이율 보기</string>
+    <string name="ic_close_description">닫기</string>
+    <string name="ic_home_description">홈</string>
+    <string name="ic_menu_description">메뉴</string>
+    <string name="ic_arrow_left_description">뒤로가기</string>
 </resources>
