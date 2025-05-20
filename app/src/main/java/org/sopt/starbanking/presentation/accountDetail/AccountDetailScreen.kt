@@ -22,6 +22,7 @@ import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailDivider
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailInfoWrapper
+import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailTitleItem
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
@@ -71,7 +72,19 @@ private fun AccountDetailScreen(
             AccountDetailInfoWrapper()
             Spacer(Modifier.height(18.dp))
             AccountDetailDivider()
+            Spacer(Modifier.height(24.dp))
+            AccountDetailTitleItem(
+                title = "과세정보",
+                verticalPadding = 20,
+            )
+            AccountDetailDivider()
+            AccountDetailTitleItem(
+                title = "대출정보 목록",
+                verticalPadding = 20,
+            )
+            Spacer(Modifier.height(30.dp))
         }
+        CustomHorizontalDivider()
     }
 }
 
