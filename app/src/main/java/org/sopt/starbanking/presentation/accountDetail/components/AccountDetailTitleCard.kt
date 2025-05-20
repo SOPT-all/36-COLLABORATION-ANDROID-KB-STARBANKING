@@ -12,30 +12,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.sopt.starbanking.R
-import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
-import org.sopt.starbanking.ui.theme.kbStarBankingFontBold
+import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType
 
 @Composable
-fun AccountDetailTitleItem(
+fun AccountDetailTitleCard(
     title: String,
-    verticalPadding: Int,
+    cardType: AccountDetailCardType,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = verticalPadding.dp),
+            .padding(vertical = cardType.verticalPadding.dp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = title,
-            style = defaultkbStarBankingTypography.title2_B
+            style = cardType.textStyle
         )
-        Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_down),
-            contentDescription = "test",
-            tint = Color.Unspecified,
-        )
+        cardType.iconResId?.let { resId ->
+            Icon(
+                imageVector = ImageVector.vectorResource(resId),
+                contentDescription = cardType.iconDescription,
+                tint = Color.Unspecified,
+            )
+        }
     }
 }

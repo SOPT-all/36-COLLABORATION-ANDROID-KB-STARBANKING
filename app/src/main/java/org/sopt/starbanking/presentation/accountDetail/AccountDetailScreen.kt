@@ -22,7 +22,10 @@ import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailDivider
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailInfoWrapper
-import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailTitleItem
+import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailTitleCard
+import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.BOLD_WITH_ICON
+import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.BOLD
+import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.LIGHT_WITH_ICON
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
@@ -73,18 +76,50 @@ private fun AccountDetailScreen(
             Spacer(Modifier.height(18.dp))
             AccountDetailDivider()
             Spacer(Modifier.height(24.dp))
-            AccountDetailTitleItem(
+            AccountDetailTitleCard(
                 title = "과세정보",
-                verticalPadding = 20,
+                cardType = BOLD_WITH_ICON,
             )
             AccountDetailDivider()
-            AccountDetailTitleItem(
+            AccountDetailTitleCard(
                 title = "대출정보 목록",
-                verticalPadding = 20,
+                cardType = BOLD_WITH_ICON,
             )
+            AccountDetailDivider()
             Spacer(Modifier.height(30.dp))
         }
         CustomHorizontalDivider()
+        Spacer(Modifier.height(30.dp))
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 23.dp)
+        ) {
+            AccountDetailTitleCard(
+                title = "관리하기",
+                cardType = BOLD,
+            )
+            AccountDetailTitleCard(
+                title = "상품안내",
+                cardType = LIGHT_WITH_ICON,
+            )
+            AccountDetailDivider()
+            AccountDetailTitleCard(
+                title = "계좌이율 보기",
+                cardType = LIGHT_WITH_ICON,
+                onClick = navigateToAccountInterest
+            )
+            AccountDetailDivider()
+            AccountDetailTitleCard(
+                title = "자동이체 등록",
+                cardType = LIGHT_WITH_ICON,
+            )
+            AccountDetailDivider()
+            AccountDetailTitleCard(
+                title = "상품만기 알림서비스 신청/해지",
+                cardType = LIGHT_WITH_ICON,
+            )
+        }
     }
 }
 
