@@ -16,9 +16,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.R
+import org.sopt.starbanking.core.components.CustomHorizontalDivider
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
+import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailDivider
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailInfoWrapper
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
@@ -67,6 +69,8 @@ private fun AccountDetailScreen(
                 .padding(horizontal = 23.dp)
         ) {
             AccountDetailInfoWrapper()
+            Spacer(Modifier.height(18.dp))
+            AccountDetailDivider()
         }
     }
 }
