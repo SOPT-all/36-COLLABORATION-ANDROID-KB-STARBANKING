@@ -15,17 +15,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.starbanking.R
 import org.sopt.starbanking.core.components.CustomHorizontalDivider
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailDivider
-import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailInfoWrapper
+import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailMainInfo
 import org.sopt.starbanking.presentation.accountDetail.components.AccountDetailTitleCard
-import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.BOLD_WITH_ICON
 import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.BOLD
+import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.BOLD_WITH_ICON
 import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType.LIGHT_WITH_ICON
+import org.sopt.starbanking.presentation.accountDetail.viewmodel.AccountDetailUiModel
+import org.sopt.starbanking.presentation.accountDetail.viewmodel.AccountDetailViewModel
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
@@ -33,11 +36,14 @@ fun AccountDetailRoute(
     padding: PaddingValues,
     navigateToTransactionHistory: () -> Unit,
     navigateToAccountInterest: () -> Unit,
+    viewModel: AccountDetailViewModel = hiltViewModel()
 ) {
+    val accountInfo: AccountDetailUiModel = viewModel.uiState.value
     AccountDetailScreen(
         padding = padding,
         navigateToTransactionHistory,
-        navigateToAccountInterest
+        navigateToAccountInterest,
+        accountInfo,
     )
 }
 
@@ -46,6 +52,7 @@ private fun AccountDetailScreen(
     padding: PaddingValues,
     navigateToTransactionHistory: () -> Unit,
     navigateToAccountInterest: () -> Unit,
+    accountInfo: AccountDetailUiModel,
     modifier: Modifier = Modifier
 ) {
     val topBarState = TopBarState(
@@ -72,7 +79,9 @@ private fun AccountDetailScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 23.dp)
         ) {
-            AccountDetailInfoWrapper()
+            AccountDetailMainInfo(
+                accountInfo
+            )
             Spacer(Modifier.height(18.dp))
             AccountDetailDivider()
             Spacer(Modifier.height(24.dp))
@@ -130,5 +139,11 @@ private fun PreviewThisScreen() {
         padding = PaddingValues(10.dp),
         navigateToAccountInterest = {},
         navigateToTransactionHistory = {},
+        accountInfo = AccountDetailUiModel(
+            depositCount = 1,
+            accountState = "정상",
+            lastTransaction = "2025.05.01",
+            contractPeriod = 6
+        )
     )
 }

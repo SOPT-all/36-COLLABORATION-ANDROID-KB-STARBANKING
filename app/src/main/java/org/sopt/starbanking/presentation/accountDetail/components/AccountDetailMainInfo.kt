@@ -10,10 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.sopt.starbanking.presentation.accountDetail.viewmodel.AccountDetailUiModel
 import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
 @Composable
-fun AccountDetailInfoWrapper(
+fun AccountDetailMainInfo(
+    accountInfo: AccountDetailUiModel,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -29,7 +31,7 @@ fun AccountDetailInfoWrapper(
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = "1",
+                text = accountInfo.depositCount.toString(),
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -39,25 +41,11 @@ fun AccountDetailInfoWrapper(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "납입회차",
+                text = "계좌상태",
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = "1",
-                style = defaultkbStarBankingTypography.body1_L
-            )
-        }
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "납입회차",
-                style = defaultkbStarBankingTypography.body1_L
-            )
-            Text(
-                text = "1",
+                text = accountInfo.accountState,
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -67,11 +55,25 @@ fun AccountDetailInfoWrapper(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "납입회차",
+                text = "최종거래일",
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = "1",
+                text = accountInfo.lastTransaction,
+                style = defaultkbStarBankingTypography.body1_L
+            )
+        }
+        Row(
+            modifier = modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "계약기간",
+                style = defaultkbStarBankingTypography.body1_L
+            )
+            Text(
+                text = accountInfo.contractPeriod.toString(),
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -81,5 +83,12 @@ fun AccountDetailInfoWrapper(
 @Preview
 @Composable
 private fun PreviewThis() {
-    AccountDetailInfoWrapper()
+    AccountDetailMainInfo(
+        AccountDetailUiModel(
+            depositCount = 1,
+            accountState = "정상",
+            lastTransaction = "2025.05.01",
+            contractPeriod = 6
+        )
+    )
 }
