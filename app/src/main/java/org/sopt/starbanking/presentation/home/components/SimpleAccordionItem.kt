@@ -71,7 +71,8 @@ fun SimpleAccordionItem(
 
         AnimatedVisibility(visible = isExpanded) {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(11.dp)
+                verticalArrangement = Arrangement.spacedBy(11.dp),
+                contentPadding = PaddingValues(14.dp)
             ) {
                 items(accounts) { account ->
                     AccountCard(
