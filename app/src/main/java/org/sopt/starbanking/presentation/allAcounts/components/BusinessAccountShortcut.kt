@@ -1,4 +1,4 @@
-package org.sopt.starbanking.presentation.home.components
+package org.sopt.starbanking.presentation.allAcounts.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

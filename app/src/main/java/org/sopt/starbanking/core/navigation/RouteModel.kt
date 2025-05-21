@@ -14,4 +14,7 @@ sealed interface Route {
 
     @Serializable
     data object AccountInterest : Route
+
+    @Serializable
+    data object AllAccounts: Route
 }

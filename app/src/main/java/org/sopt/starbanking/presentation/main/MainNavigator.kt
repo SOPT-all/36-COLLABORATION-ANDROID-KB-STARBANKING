@@ -10,6 +10,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.starbanking.core.navigation.Route
+import org.sopt.starbanking.presentation.allAcounts.navigation.navigateToAllAccounts
 import org.sopt.starbanking.presentation.home.navigation.navigateToHome
 
 
@@ -23,6 +24,17 @@ class MainNavigator(
 
     fun navigateToHome(navOptions: NavOptions? = null) {
         navController.navigateToHome(
+            navOptions ?: navOptions {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    inclusive = true
+                }
+                launchSingleTop = true
+            }
+        )
+    }
+
+    fun navigateToAllAccounts(navOptions: NavOptions? = null){
+        navController.navigateToAllAccounts(
             navOptions ?: navOptions {
                 popUpTo(navController.graph.findStartDestination().id) {
                     inclusive = true
