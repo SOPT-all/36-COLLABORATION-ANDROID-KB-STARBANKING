@@ -42,7 +42,7 @@ fun SimpleAccordionItem(
                 .clip(
                     RoundedCornerShape(topStart = 4.dp, bottomStart = 4.dp)
                 )
-                .background(StarBankingTheme.colors.gray3)
+                .background(if (isExpanded) StarBankingTheme.colors.gray2 else StarBankingTheme.colors.gray3)
                 .fillMaxWidth()
                 .height(if (isExpanded) 51.dp else 44.dp )
                 .padding(start = 26.dp, end = 20.dp)
