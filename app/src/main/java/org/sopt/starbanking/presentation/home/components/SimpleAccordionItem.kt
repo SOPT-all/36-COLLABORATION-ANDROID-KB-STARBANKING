@@ -5,11 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -24,12 +27,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
+data class AccountData(
+    val title: String,
+    val accountNumber: String,
+    val startDate: String,
+    val endDate: String,
+    val balance: String
+)
+
 @Composable
 fun SimpleAccordionItem(
     title: String,
     isExpanded: Boolean,
     onToggle: () -> Unit,
-    content: @Composable () -> Unit
+    accounts: List<AccountData>
 ) {
     Column(
         modifier = Modifier
@@ -56,30 +67,41 @@ fun SimpleAccordionItem(
             )
         }
 
-        Spacer(modifier = Modifier.height(11.dp))
+        Spacer(modifier = Modifier.height(14.dp))
 
         AnimatedVisibility(visible = isExpanded) {
-            content()
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(11.dp)
+            ) {
+                items(accounts) { account ->
+                    AccountCard(
+                        title = account.title,
+                        accountNumber = account.accountNumber,
+                        startDate = account.startDate,
+                        endDate = account.endDate,
+                        balance = account.balance,
+                        onClick = { }
+                    )
+                }
+            }
         }
+
+        Spacer(modifier = Modifier.height(14.dp))
     }
 }
 
 @Composable
 @Preview
 fun ShowSimpleAccordionItem(){
+    val depositAccounts = listOf(
+        AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원"),
+        AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원")
+    )
+
     SimpleAccordionItem(
         title = "예금, 적금",
         isExpanded = true,
         onToggle = {},
-        content = {
-            AccountCard(
-                title = "KB맑은하늘적금",
-                accountNumber = "512601-01-250726",
-                startDate = "2025.04.23",
-                endDate = "2025.10.23",
-                balance = "10,000원",
-                onClick = {}
-            )
-        },
+        accounts = depositAccounts
     )
 }

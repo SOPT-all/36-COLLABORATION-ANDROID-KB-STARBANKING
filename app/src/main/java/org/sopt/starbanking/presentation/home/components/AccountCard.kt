@@ -46,8 +46,7 @@ fun AccountCard(
     Card(
         modifier = Modifier
             .width(330.dp)
-            .height(285.dp)
-            .padding(bottom = 11.dp),
+            .height(285.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(
             containerColor = StarBankingTheme.colors.white,

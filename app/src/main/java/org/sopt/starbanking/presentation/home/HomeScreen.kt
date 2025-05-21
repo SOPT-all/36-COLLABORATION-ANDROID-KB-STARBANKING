@@ -24,6 +24,7 @@ import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.home.components.AccountCard
+import org.sopt.starbanking.presentation.home.components.AccountData
 import org.sopt.starbanking.presentation.home.components.BusinessAccountShortcut
 import org.sopt.starbanking.presentation.home.components.HomeTabMenu
 import org.sopt.starbanking.presentation.home.components.SimpleAccordionItem
@@ -72,44 +73,38 @@ private fun HomeScreen(
         Spacer(modifier = Modifier.height(23.dp))
 
         Column {
+            val depositAccounts = listOf(
+                AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원"),
+                AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원")
+            )
+
             SimpleAccordionItem(
-                title = "예금 • 적금",
+                title = "예금 · 적금",
                 isExpanded = true,
-                onToggle = {  }
-            ) {
-                AccountCard(
-                    title = "KB맑은하늘적금",
-                    accountNumber = "512601-01-250726",
-                    startDate = "2025.04.23",
-                    endDate = "2025.10.23",
-                    balance = "10,000원",
-                    onClick = {}
-                )
-            }
+                onToggle = { /* toggle 상태 처리 */ },
+                accounts = depositAccounts
+            )
 
             SimpleAccordionItem(
                 title = "대출",
                 isExpanded = false,
-                onToggle = {  }
-            ) {
-                Text("대출 정보", modifier = Modifier.padding(16.dp))
-            }
+                onToggle = {  },
+                accounts = depositAccounts
+            )
 
             SimpleAccordionItem(
                 title = "보험 · 공제",
                 isExpanded = false,
-                onToggle = {  }
-            ) {
-                Text("보험 정보", modifier = Modifier.padding(16.dp))
-            }
+                onToggle = {  },
+                accounts = depositAccounts
+            )
 
             SimpleAccordionItem(
                 title = "퇴직연금",
                 isExpanded = false,
-                onToggle = {  }
-            ) {
-                Text("연금 정보", modifier = Modifier.padding(16.dp))
-            }
+                onToggle = {  },
+                accounts = depositAccounts
+            )
         }
         Spacer(Modifier.height(23.dp))
         BusinessAccountShortcut({})
