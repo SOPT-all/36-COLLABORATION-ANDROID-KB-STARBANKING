@@ -24,6 +24,7 @@ import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.home.components.AccountCard
+import org.sopt.starbanking.presentation.home.components.BusinessAccountShortcut
 import org.sopt.starbanking.presentation.home.components.HomeTabMenu
 import org.sopt.starbanking.presentation.home.components.SimpleAccordionItem
 import org.sopt.starbanking.ui.theme.StarBankingTheme
@@ -110,6 +111,8 @@ private fun HomeScreen(
                 Text("연금 정보", modifier = Modifier.padding(16.dp))
             }
         }
+        Spacer(Modifier.height(23.dp))
+        BusinessAccountShortcut({})
     }
 }
 

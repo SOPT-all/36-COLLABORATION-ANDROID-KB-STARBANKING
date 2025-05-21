@@ -32,7 +32,7 @@ fun BusinessAccountShortcut(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(horizontal = 20.dp)
             .clickable { onClick() }
     ) {
         Image(
