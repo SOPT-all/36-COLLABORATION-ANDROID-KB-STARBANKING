@@ -44,6 +44,7 @@ import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.KBMediumButton
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
+import org.sopt.starbanking.core.extension.noRippleClickable
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
@@ -340,7 +341,7 @@ fun SavingsDetailScreen(
                     contentDescription = "퀴즈 배너",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { }
+                        .noRippleClickable { }
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -409,14 +410,3 @@ fun ProgressBar(
         Spacer(modifier = Modifier.height(4.dp))
     }
 }
-
-/*
-@Preview(showBackground = true)
-@Composable
-fun AccountDetailScreenPreview() {
-    MaterialTheme {
-        Surface {
-            SavingsDetailScreen()
-        }
-    }
-}*/
