@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import org.sopt.starbanking.presentation.savingsDetail.SavingsDetailScreen
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @AndroidEntryPoint
@@ -18,7 +19,8 @@ class MainActivity : ComponentActivity() {
             // TODO : val mainNavigator = rememberMainNavigator(navigator)
 
             StarBankingTheme {
-                MainScreen(
+                SavingsDetailScreen(
+                    accountId = 2
                     // TODO: navigator = mainNavigator
                 )
             }

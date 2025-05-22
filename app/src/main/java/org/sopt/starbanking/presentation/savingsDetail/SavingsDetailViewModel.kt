@@ -3,57 +3,42 @@ package org.sopt.starbanking.presentation.savingsDetail
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
-
-data class Deposit(
-    val id: Long,
-    val count: Int,
-    val depositDate: String,
-    val payment: Int,
-    val afterPaymentBalance: Int,
-    val appliedRate: String
-)
-
-data class SavingsDetailUiModel(
-    val savingAccountName: String,
-    val accountNumber: String,
-    val totalBalance: Int,
-    val startDate: String,
-    val endDate: String,
-    val dDay: String,
-    val preferentialRate: String,
-    val maxAppliedRate: String,
-    val deposits: List<Deposit>
-)
+import kotlinx.coroutines.launch
+import org.sopt.starbanking.data.dto.response.ResponseSavingsState
+import org.sopt.starbanking.data.service.StarBankingService
+import timber.log.Timber
 
 @HiltViewModel
-class SavingsDetailViewModel @Inject constructor() : ViewModel() {
+class SavingsDetailViewModel @Inject constructor(
+    private val starBankingService: StarBankingService
+) : ViewModel() {
 
-    private val _uiState = mutableStateOf<SavingsDetailUiModel?>(null)
-    val uiState: State<SavingsDetailUiModel?> = _uiState
+    private val _savingsState = mutableStateOf<ResponseSavingsState?>(null)
+    val savingsState: State<ResponseSavingsState?> = _savingsState
 
-    init {
-        // 임시 하드코딩
-        _uiState.value = SavingsDetailUiModel(
-            savingAccountName = "KB 내맘대로 적금",
-            accountNumber = "293203-04-313912",
-            totalBalance = 10000,
-            startDate = "2025.04.23",
-            endDate = "2025.10.23",
-            dDay = "D-183",
-            preferentialRate = "6.00",
-            maxAppliedRate = "8.00",
-            deposits = listOf(
-                Deposit(
-                    id = 1L,
-                    count = 1,
-                    depositDate = "2025.05.01",
-                    payment = 10000,
-                    afterPaymentBalance = 10000,
-                    appliedRate = "6.00"
-                )
-            )
-        )
+    fun fetchSavingsDetail(accountId: Long) {
+        Timber.tag("SavingsViewModel").d("🔍 fetchSavingsDetail called with accountId: $accountId")
+
+        viewModelScope.launch {
+            runCatching {
+                starBankingService.getSavingsState(accountId)
+            }.onSuccess { response ->
+                Timber.tag("SavingsViewModel").d("✅ API call success: $response")
+
+                val data = response.data
+                if (data != null) {
+                    _savingsState.value = data
+                    Timber.tag("SavingsViewModel").d("Savings data received: $data")
+                } else {
+                    Timber.tag("SavingsViewModel").w("Response data is null: ${response.message}")
+                }
+
+            }.onFailure { throwable ->
+                Timber.tag("SavingsViewModel").e(throwable, "API call failed")
+            }
+        }
     }
 }
