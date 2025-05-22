@@ -289,7 +289,11 @@ fun SavingsDetailScreen(
                         Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
                             DetailRow("납입일자", deposit.depositDate)
                             Spacer(modifier = Modifier.height(14.dp))
-                            DetailRow("납입금액", "${deposit.payment} 원")
+                            DetailRow(
+                                label = "납입금액",
+                                value = "${deposit.payment} 원",
+                                valueColor = StarBankingTheme.colors.blue1
+                            )
                             Spacer(modifier = Modifier.height(14.dp))
                             DetailRow("납입 후 잔액", "${deposit.afterPaymentBalance} 원")
                             Spacer(modifier = Modifier.height(14.dp))
@@ -359,15 +363,24 @@ fun SavingsDetailScreen(
 }
 
 @Composable
-fun DetailRow(label: String, value: String) {
+fun DetailRow(
+    label: String,
+    value: String,
+    valueColor: Color = StarBankingTheme.colors.black
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(label, style = StarBankingTheme.typography.body2_L)
-        Text(value, style = StarBankingTheme.typography.body2_R)
+        Text(
+            text = value,
+            style = StarBankingTheme.typography.body2_R,
+            color = valueColor
+        )
     }
 }
+
 
 @Composable
 fun ProgressBar(
