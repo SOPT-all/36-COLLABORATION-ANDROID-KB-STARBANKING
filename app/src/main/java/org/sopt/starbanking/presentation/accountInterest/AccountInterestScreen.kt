@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -20,9 +21,12 @@ import org.sopt.starbanking.core.components.CustomThinDivider
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
+import org.sopt.starbanking.presentation.accountInterest.components.AccountInterestTable
+import org.sopt.starbanking.presentation.accountInterest.components.AccountInterestTitle
 import org.sopt.starbanking.presentation.accountInterest.components.AccountSummary
 import org.sopt.starbanking.presentation.accountInterest.components.AccountTermInfo
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
+import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
 @Composable
 fun AccountInterestRoute(
@@ -75,6 +79,18 @@ private fun AccountInterestScreen(
                 startDate = "2025.04.25",
                 endDate = "2026.04.25"
             )
+            CustomThinDivider()
+            Spacer(modifier.height(46.dp))
+            AccountInterestTitle(title = "기본이율")
+            Spacer(modifier.height(5.dp))
+            Text(
+                text = "(연이율, 세전, 단위: %)",
+                style = defaultkbStarBankingTypography.caption1_L
+            )
+            Spacer(modifier.height(6.dp))
+            AccountInterestTable()
+            Spacer(modifier.height(46.dp))
+
         }
     }
 }
