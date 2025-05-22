@@ -3,17 +3,23 @@ package org.sopt.starbanking.presentation.accountInterest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.R
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
+import org.sopt.starbanking.presentation.accountInterest.components.AccountSummary
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
@@ -48,8 +54,19 @@ private fun AccountInterestScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(padding)
+            .verticalScroll(rememberScrollState())
             .background(defaultStarBankingColors.white)
     ) {
         CustomTopBar(topBarState)
+        Spacer(modifier.height(13.dp))
+        Column(
+            modifier.padding(horizontal = 23.dp)
+        ) {
+            AccountSummary(
+                savingAccountName = "KB내맘대로적금",
+                accountNumber = "293203-02-313912"
+            )
+            Spacer(modifier.height(20.dp))
+        }
     }
 }
