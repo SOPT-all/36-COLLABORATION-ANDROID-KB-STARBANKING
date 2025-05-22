@@ -1,17 +1,45 @@
 package org.sopt.starbanking.core.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.core.extension.noRippleClickable
 import org.sopt.starbanking.ui.theme.StarBankingTheme
+
+
+@Composable
+fun NoRippleButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(2.dp))
+            .background(StarBankingTheme.colors.gray3)
+            .noRippleClickable { onClick() }
+            .padding(vertical = 10.dp, horizontal = 16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            style = StarBankingTheme.typography.body3_L,
+            color = StarBankingTheme.colors.black
+        )
+    }
+}
 
 @Composable
 fun KBCustomButton(
@@ -19,20 +47,11 @@ fun KBCustomButton(
     text: String,
     onClick: () -> Unit
 ) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.noRippleClickable { onClick() },
-        shape = RoundedCornerShape(2.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = StarBankingTheme.colors.gray3,
-            contentColor = StarBankingTheme.colors.black
-        ),
-    ) {
-        Text(
-            text = text,
-            style = StarBankingTheme.typography.body3_L
-        )
-    }
+    NoRippleButton(
+        modifier = modifier,
+        text = text,
+        onClick = onClick
+    )
 }
 
 @Composable
