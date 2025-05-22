@@ -16,10 +16,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.R
+import org.sopt.starbanking.core.components.CustomThinDivider
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
 import org.sopt.starbanking.presentation.accountInterest.components.AccountSummary
+import org.sopt.starbanking.presentation.accountInterest.components.AccountTermInfo
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
@@ -67,6 +69,12 @@ private fun AccountInterestScreen(
                 accountNumber = "293203-02-313912"
             )
             Spacer(modifier.height(20.dp))
+            CustomThinDivider()
+            AccountTermInfo(
+                contractPeriod = 12,
+                startDate = "2025.04.25",
+                endDate = "2026.04.25"
+            )
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.sopt.starbanking.presentation.accountDetail.components
+package org.sopt.starbanking.core.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,11 +10,13 @@ import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 
 @Composable
-fun AccountDetailDivider(
+fun CustomThinDivider(
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier
-        .fillMaxWidth()
-        .height(1.dp)
-        .background(defaultStarBankingColors.gray1))
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(1.dp)
+            .background(defaultStarBankingColors.gray1)
+    )
 }
