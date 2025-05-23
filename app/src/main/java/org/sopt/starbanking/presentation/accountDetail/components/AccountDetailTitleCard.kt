@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.sopt.starbanking.core.extension.noRippleClickable
 import org.sopt.starbanking.presentation.accountDetail.type.AccountDetailCardType
 
 @Composable
@@ -24,7 +25,8 @@ fun AccountDetailTitleCard(
     Row(
         modifier = modifier
             .padding(vertical = cardType.verticalPadding.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .noRippleClickable { onClick() },
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(

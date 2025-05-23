@@ -22,7 +22,7 @@ class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-    val startDestination = Route.AccountInterest
+    val startDestination = Route.Home
 
     fun navigateToHome(navOptions: NavOptions? = null) {
         navController.navigateToHome(
