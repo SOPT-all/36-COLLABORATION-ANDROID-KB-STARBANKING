@@ -1,12 +1,14 @@
 package org.sopt.starbanking.presentation.accountInterest
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -25,6 +27,7 @@ import org.sopt.starbanking.presentation.accountInterest.components.AccountInter
 import org.sopt.starbanking.presentation.accountInterest.components.AccountInterestTitle
 import org.sopt.starbanking.presentation.accountInterest.components.AccountSummary
 import org.sopt.starbanking.presentation.accountInterest.components.AccountTermInfo
+import org.sopt.starbanking.presentation.accountInterest.components.PreferentialInterestCard
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
@@ -90,7 +93,22 @@ private fun AccountInterestScreen(
             Spacer(modifier.height(6.dp))
             AccountInterestTable()
             Spacer(modifier.height(46.dp))
-
+            AccountInterestTitle(title = "우대이율")
+            LazyRow(
+                modifier = modifier.padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                item {
+                    PreferentialInterestCard()
+                }
+                item {
+                    PreferentialInterestCard()
+                }
+                item {
+                    PreferentialInterestCard()
+                }
+            }
+            Spacer(modifier.height(10.dp))
         }
     }
 }
