@@ -27,6 +27,7 @@ import org.sopt.starbanking.presentation.accountInterest.components.AccountInter
 import org.sopt.starbanking.presentation.accountInterest.components.AccountInterestTitle
 import org.sopt.starbanking.presentation.accountInterest.components.AccountSummary
 import org.sopt.starbanking.presentation.accountInterest.components.AccountTermInfo
+import org.sopt.starbanking.presentation.accountInterest.components.NoticeBulletList
 import org.sopt.starbanking.presentation.accountInterest.components.PreferentialInterestCard
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
@@ -109,6 +110,10 @@ private fun AccountInterestScreen(
                 }
             }
             Spacer(modifier.height(10.dp))
+            NoticeBulletList(notice = "이율정보는 조회시점 현재를 기준으로 조회된\n" + "내용이며 만기 시에 최종 확정됩니다.")
+            Spacer(modifier.height(7.dp))
+            NoticeBulletList(notice = "중도 해지할 경우 중도해지이율이 적용되므로\n" + "유의하시기 바랍니다.")
+            Spacer(modifier.height(7.dp))
         }
     }
 }
