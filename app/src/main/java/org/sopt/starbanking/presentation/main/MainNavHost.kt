@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import org.sopt.starbanking.presentation.allAcounts.navigation.allAccountsNavGraph
 import org.sopt.starbanking.presentation.accountDetail.navigation.accountDetailGraph
 import org.sopt.starbanking.presentation.home.navigation.homeNavGraph
 
@@ -23,6 +24,7 @@ fun MainNavHost(
             startDestination = navigator.startDestination
         ) {
             homeNavGraph(padding = padding)
+            allAccountsNavGraph(padding = padding)
             accountDetailGraph(
                 padding = padding,
                 navigateToTransactionHistory = navigator::navigateToTransactionHistory,
