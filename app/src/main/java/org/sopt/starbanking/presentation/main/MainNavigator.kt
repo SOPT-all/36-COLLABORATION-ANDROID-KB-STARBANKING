@@ -10,6 +10,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.starbanking.core.navigation.Route
+import org.sopt.starbanking.presentation.allAccount.navigation.navigateToAllAccounts
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToAccountInterest
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToTransactionHistory
 import org.sopt.starbanking.presentation.accountInterest.navigation.navigateToAccountDetail
@@ -23,7 +24,9 @@ class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-    val startDestination = Route.AccountDetail
+
+    val startDestination = Route.AllAccounts
+
 
     fun navigateToHome(navOptions: NavOptions? = null) {
         navController.navigateToHome(

@@ -4,6 +4,7 @@ import org.sopt.starbanking.data.dto.base.BaseResponse
 import org.sopt.starbanking.data.dto.response.ResponseAccountInterest
 import org.sopt.starbanking.data.dto.response.ResponseAccountState
 import org.sopt.starbanking.data.dto.response.ResponseSavingsState
+import org.sopt.starbanking.data.dto.response.ResponseTotalAccountState
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -26,4 +27,8 @@ interface StarBankingService {
     suspend fun getAccountInterest(
         @Path("account-id") accountId: Long
     ): BaseResponse<ResponseAccountInterest>
+  
+    // 전체 계좌 조회
+    @GET("/api/v1/accounts")
+    suspend fun getTotalAccountState(): BaseResponse<ResponseTotalAccountState>
 }

@@ -1,4 +1,4 @@
-package org.sopt.starbanking.presentation.allAcounts.components
+package org.sopt.starbanking.presentation.allAccount.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -32,7 +32,7 @@ data class AccountData(
     val accountNumber: String,
     val startDate: String,
     val endDate: String,
-    val balance: String
+    val balance: Int
 )
 
 @Composable
@@ -70,17 +70,19 @@ fun SimpleAccordionItem(
         Spacer(modifier = Modifier.height(14.dp))
 
         AnimatedVisibility(visible = isExpanded) {
-            LazyColumn(
+            Column(
                 verticalArrangement = Arrangement.spacedBy(11.dp),
-                contentPadding = PaddingValues(14.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 14.dp)
             ) {
-                items(accounts) { account ->
+                accounts.forEach { account ->
                     AccountCard(
                         title = account.title,
                         accountNumber = account.accountNumber,
                         startDate = account.startDate,
                         endDate = account.endDate,
-                        balance = account.balance,
+                        balance = account.balance.toString() + "원",
                         onClick = { }
                     )
                 }
@@ -95,8 +97,8 @@ fun SimpleAccordionItem(
 @Preview
 fun ShowSimpleAccordionItem(){
     val depositAccounts = listOf(
-        AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원"),
-        AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원")
+        AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", 10000),
+        AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", 10000)
     )
 
     SimpleAccordionItem(

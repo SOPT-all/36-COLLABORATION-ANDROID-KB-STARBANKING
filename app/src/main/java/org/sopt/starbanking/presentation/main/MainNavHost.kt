@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import org.sopt.starbanking.presentation.allAcounts.navigation.allAccountsNavGraph
+import org.sopt.starbanking.presentation.allAccount.navigation.allAccountsNavGraph
 import org.sopt.starbanking.presentation.accountDetail.navigation.accountDetailGraph
 import org.sopt.starbanking.presentation.accountInterest.navigation.accountInterestGraph
 import org.sopt.starbanking.presentation.home.navigation.homeNavGraph
