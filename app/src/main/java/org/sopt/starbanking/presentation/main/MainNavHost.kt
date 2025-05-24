@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import org.sopt.starbanking.presentation.allAcounts.navigation.allAccountsNavGraph
 import org.sopt.starbanking.presentation.accountDetail.navigation.accountDetailGraph
+import org.sopt.starbanking.presentation.accountInterest.navigation.accountInterestGraph
 import org.sopt.starbanking.presentation.home.navigation.homeNavGraph
 
 @Composable
@@ -29,6 +30,10 @@ fun MainNavHost(
                 padding = padding,
                 navigateToTransactionHistory = navigator::navigateToTransactionHistory,
                 navigateToAccountInterest = navigator::navigateToAccountInterest
+            )
+            accountInterestGraph(
+                padding = padding,
+                navigateToAccountDetail = navigator::navigateToAccountDetail
             )
         }
     }
