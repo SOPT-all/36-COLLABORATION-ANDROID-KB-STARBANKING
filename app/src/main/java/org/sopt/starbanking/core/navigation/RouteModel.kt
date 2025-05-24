@@ -7,9 +7,6 @@ sealed interface Route {
     data object Home : Route
 
     @Serializable
-    data object TransactionHistory : Route
-
-    @Serializable
     data object AccountDetail : Route
 
     @Serializable

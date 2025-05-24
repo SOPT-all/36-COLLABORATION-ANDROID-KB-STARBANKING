@@ -32,7 +32,7 @@ fun MainNavHost(
             )
             accountDetailGraph(
                 padding = padding,
-                navigateToTransactionHistory = navigator::navigateToTransactionHistory,
+                navigateToTransactionHistory = navigator::navigateToSavingDetail,
                 navigateToAccountInterest = navigator::navigateToAccountInterest
             )
             accountInterestGraph(

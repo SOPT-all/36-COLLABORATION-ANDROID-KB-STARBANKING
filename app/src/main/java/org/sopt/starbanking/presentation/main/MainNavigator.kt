@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.starbanking.core.navigation.Route
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToAccountInterest
-import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToTransactionHistory
 import org.sopt.starbanking.presentation.accountInterest.navigation.navigateToAccountDetail
 import org.sopt.starbanking.presentation.allAccount.navigation.navigateToAllAccounts
 import org.sopt.starbanking.presentation.allAccount.navigation.navigateToSavingDetail
@@ -39,19 +38,9 @@ class MainNavigator(
         )
     }
 
-    fun navigateToAllAccounts(navOptions: NavOptions? = null) {
-        navController.navigateToAllAccounts(
-            navOptions ?: navOptions {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    inclusive = true
-                }
-                launchSingleTop = true
-            }
-        )
-    }
 
-    fun navigateToTransactionHistory() {
-        navController.navigateToTransactionHistory()
+    fun navigateToAllAccounts() {
+        navController.navigateToAllAccounts()
     }
 
     fun navigateToAccountInterest() {

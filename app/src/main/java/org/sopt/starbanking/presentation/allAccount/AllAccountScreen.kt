@@ -45,14 +45,12 @@ fun AllAccountsRoute(
     navigateToSavingDetail: () -> Unit,
 ) {
     AllAccountsScreen(
-        padding = padding,
         navigateToSavingDetail,
     )
 }
 
 @Composable
 private fun AllAccountsScreen(
-    padding: PaddingValues,
     navigateToSavingDetail: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AllAccountViewModel = hiltViewModel()
@@ -129,7 +127,8 @@ private fun AllAccountsScreen(
                             if (selectedAccordion == title) "" else title
                         )
                     },
-                    accounts = depositAccounts
+                    accounts = depositAccounts,
+                    onClick = navigateToSavingDetail
                 )
             }
 
@@ -145,7 +144,6 @@ private fun AllAccountsScreen(
 @Composable
 fun ShowHomeScreen(){
     AllAccountsScreen(
-        padding = PaddingValues(0.dp),
         navigateToSavingDetail = {}
     )
 }

@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.starbanking.R
 import org.sopt.starbanking.core.components.KBLargeButton
+import org.sopt.starbanking.core.extension.noRippleClickable
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
@@ -59,6 +60,9 @@ fun AccountCard(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(12.dp)
+                    .noRippleClickable {
+                        onClick()
+                    }
             )
 
             Column(
@@ -77,7 +81,7 @@ fun AccountCard(
 
                 Spacer(Modifier.height(12.dp))
                 OutlinedButton(
-                    onClick = onClick,
+                    onClick = {  },
                     colors = ButtonDefaults.outlinedButtonColors(),
                     modifier = Modifier
                         .height(30.dp)
