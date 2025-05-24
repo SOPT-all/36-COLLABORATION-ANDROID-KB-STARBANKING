@@ -10,11 +10,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.starbanking.core.navigation.Route
-import org.sopt.starbanking.presentation.allAccount.navigation.navigateToAllAccounts
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToAccountInterest
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToTransactionHistory
 import org.sopt.starbanking.presentation.accountInterest.navigation.navigateToAccountDetail
-import org.sopt.starbanking.presentation.allAcounts.navigation.navigateToAllAccounts
+import org.sopt.starbanking.presentation.allAccount.navigation.navigateToAllAccounts
+import org.sopt.starbanking.presentation.allAccount.navigation.navigateToSavingDetail
 import org.sopt.starbanking.presentation.home.navigation.navigateToHome
 
 
@@ -60,6 +60,10 @@ class MainNavigator(
 
     fun navigateToAccountDetail() {
         navController.navigateToAccountDetail()
+    }
+
+    fun navigateToSavingDetail() {
+        navController.navigateToSavingDetail()
     }
 }
 

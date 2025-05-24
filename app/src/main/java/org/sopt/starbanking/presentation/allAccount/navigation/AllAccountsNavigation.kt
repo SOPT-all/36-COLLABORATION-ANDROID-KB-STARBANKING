@@ -12,12 +12,18 @@ fun NavController.navigateToAllAccounts(navOptions: NavOptions) {
     navigate(Route.AllAccounts, navOptions)
 }
 
+fun NavController.navigateToSavingDetail() {
+    navigate(Route.SavingDetail)
+}
+
 fun NavGraphBuilder.allAccountsNavGraph(
     padding: PaddingValues,
+    navigateToSavingDetail: () -> Unit
 ) {
     composable<Route.AllAccounts> {
         AllAccountsRoute(
             padding = padding,
+            navigateToSavingDetail
         )
     }
 }

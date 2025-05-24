@@ -25,7 +25,10 @@ fun MainNavHost(
             startDestination = navigator.startDestination
         ) {
             homeNavGraph(padding = padding)
-            allAccountsNavGraph(padding = padding)
+            allAccountsNavGraph(
+                padding = padding,
+                navigateToSavingDetail = navigator::navigateToSavingDetail
+            )
             accountDetailGraph(
                 padding = padding,
                 navigateToTransactionHistory = navigator::navigateToTransactionHistory,
@@ -35,6 +38,10 @@ fun MainNavHost(
                 padding = padding,
                 navigateToAccountDetail = navigator::navigateToAccountDetail
             )
+//            savingDetailGraph(
+//                padding = padding,
+//
+//            )
         }
     }
 }

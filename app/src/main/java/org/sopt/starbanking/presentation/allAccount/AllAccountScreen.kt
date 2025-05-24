@@ -42,15 +42,18 @@ import org.sopt.starbanking.ui.theme.StarBankingTheme
 @Composable
 fun AllAccountsRoute(
     padding: PaddingValues,
+    navigateToSavingDetail: () -> Unit,
 ) {
     AllAccountsScreen(
         padding = padding,
+        navigateToSavingDetail,
     )
 }
 
 @Composable
 private fun AllAccountsScreen(
     padding: PaddingValues,
+    navigateToSavingDetail: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AllAccountViewModel = hiltViewModel()
 ) {
@@ -142,6 +145,7 @@ private fun AllAccountsScreen(
 @Composable
 fun ShowHomeScreen(){
     AllAccountsScreen(
-        padding = PaddingValues(0.dp)
+        padding = PaddingValues(0.dp),
+        navigateToSavingDetail = {}
     )
 }
