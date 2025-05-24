@@ -3,7 +3,11 @@ package org.sopt.starbanking.presentation.accountDetail.viewmodel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import org.sopt.starbanking.data.service.StarBankingService
+import timber.log.Timber
 import javax.inject.Inject
 
 data class AccountDetailUiModel(
@@ -13,25 +17,36 @@ data class AccountDetailUiModel(
     val contractPeriod: Int
 )
 
-
 @HiltViewModel
-class AccountDetailViewModel @Inject constructor() : ViewModel() {
-    private val _uiState = mutableStateOf<AccountDetailUiModel>(
-        AccountDetailUiModel(
-            depositCount = 1,
-            accountState = "정상",
-            lastTransaction = "2025.05.01",
-            contractPeriod = 6
-        )
-    )
-    val uiState: State<AccountDetailUiModel> = _uiState
+class AccountDetailViewModel @Inject constructor(
+    private val starBankingService: StarBankingService
+) : ViewModel() {
 
-    init {
-        _uiState.value = AccountDetailUiModel(
-            depositCount = 1,
-            accountState = "정상",
-            lastTransaction = "2025.05.01",
-            contractPeriod = 6
-        )
+    private val _uiState = mutableStateOf<AccountDetailUiModel?>(null)
+    val uiState: State<AccountDetailUiModel?> = _uiState
+
+    fun getAccountDetail(accountID: Long = 1) {
+        viewModelScope.launch {
+            runCatching {
+                starBankingService.getAccountState(accountID)
+            }.onSuccess { response ->
+
+                Timber.tag("SavingsViewModel").d("✅ API call success: $response")
+
+                val data = response.data
+                if (data != null) {
+                    _uiState.value = AccountDetailUiModel(
+                        depositCount = data.depositCount,
+                        accountState = data.accountState,
+                        lastTransaction = data.lastTransaction,
+                        contractPeriod = data.contractPeriod
+                    )
+                }
+            }.onFailure {
+                // TODO: 에러 처리 로직
+                Timber.tag("SavingsViewModel").d("here error")
+                Timber.tag("SavingsViewModel").e("❌ API call failed: ${it.message}")
+            }
+        }
     }
 }

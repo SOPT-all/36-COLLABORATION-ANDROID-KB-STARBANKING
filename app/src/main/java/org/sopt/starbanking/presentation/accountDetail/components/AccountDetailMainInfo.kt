@@ -15,7 +15,7 @@ import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
 @Composable
 fun AccountDetailMainInfo(
-    accountInfo: AccountDetailUiModel,
+    accountInfo: AccountDetailUiModel?,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -31,7 +31,7 @@ fun AccountDetailMainInfo(
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = accountInfo.depositCount.toString(),
+                text = accountInfo?.depositCount.toString() ?: "",
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -45,7 +45,7 @@ fun AccountDetailMainInfo(
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = accountInfo.accountState,
+                text = accountInfo?.accountState ?: "",
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -59,7 +59,7 @@ fun AccountDetailMainInfo(
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = accountInfo.lastTransaction,
+                text = accountInfo?.lastTransaction ?: "",
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -73,7 +73,7 @@ fun AccountDetailMainInfo(
                 style = defaultkbStarBankingTypography.body1_L
             )
             Text(
-                text = accountInfo.contractPeriod.toString(),
+                text = accountInfo?.contractPeriod.toString() ?: "",
                 style = defaultkbStarBankingTypography.body1_L
             )
         }
@@ -85,7 +85,7 @@ fun AccountDetailMainInfo(
 private fun PreviewThis() {
     AccountDetailMainInfo(
         AccountDetailUiModel(
-            depositCount = 1,
+            depositCount = 3,
             accountState = "정상",
             lastTransaction = "2025.05.01",
             contractPeriod = 6
