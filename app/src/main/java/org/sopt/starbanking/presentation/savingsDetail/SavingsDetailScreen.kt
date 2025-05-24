@@ -49,7 +49,8 @@ import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
 fun SavingsDetailScreen(
-    accountId: Long,
+    navigateToAccountDetail: () -> Unit,
+    accountId: Long = 1,
     viewModel: SavingsDetailViewModel = hiltViewModel()
 ) {
     val savingsState = viewModel.savingsState.value
