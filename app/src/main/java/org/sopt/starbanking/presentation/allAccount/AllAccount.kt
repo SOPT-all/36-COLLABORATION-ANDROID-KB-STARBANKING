@@ -1,4 +1,4 @@
-package org.sopt.starbanking.presentation.allAcounts
+package org.sopt.starbanking.presentation.allAccount
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,24 +21,23 @@ import org.sopt.starbanking.R
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
-import org.sopt.starbanking.core.navigation.Route
-import org.sopt.starbanking.presentation.allAcounts.components.AccountData
-import org.sopt.starbanking.presentation.allAcounts.components.BusinessAccountShortcut
-import org.sopt.starbanking.presentation.allAcounts.components.HomeTabMenu
-import org.sopt.starbanking.presentation.allAcounts.components.SimpleAccordionItem
+import org.sopt.starbanking.presentation.allAccount.components.AccountData
+import org.sopt.starbanking.presentation.allAccount.components.BusinessAccountShortcut
+import org.sopt.starbanking.presentation.allAccount.components.HomeTabMenu
+import org.sopt.starbanking.presentation.allAccount.components.SimpleAccordionItem
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
 fun AllAccountsRoute(
     padding: PaddingValues
 ) {
-    AllAcountsScreen(
+    AllAccountsScreen(
         padding = padding
     )
 }
 
 @Composable
-private fun AllAcountsScreen(
+private fun AllAccountsScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
@@ -113,7 +112,7 @@ private fun AllAcountsScreen(
 @Preview
 @Composable
 fun ShowHomeScreen(){
-    AllAcountsScreen(
+    AllAccountsScreen(
         padding = PaddingValues(0.dp)
     )
 }

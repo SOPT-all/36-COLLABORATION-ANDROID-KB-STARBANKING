@@ -1,4 +1,4 @@
-package org.sopt.starbanking.presentation.allAcounts.components
+package org.sopt.starbanking.presentation.allAccount.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
