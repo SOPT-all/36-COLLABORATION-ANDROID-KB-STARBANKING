@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseAccountState(
     @SerialName("depositCount")
-    val depositCount: String,
+    val depositCount: Int,
     @SerialName("accountState")
     val accountState: String,
     @SerialName("lastTransaction")

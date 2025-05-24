@@ -1,6 +1,7 @@
 package org.sopt.starbanking.presentation.accountDetail
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -38,13 +42,28 @@ fun AccountDetailRoute(
     navigateToAccountInterest: () -> Unit,
     viewModel: AccountDetailViewModel = hiltViewModel()
 ) {
-    val accountInfo: AccountDetailUiModel = viewModel.uiState.value
-    AccountDetailScreen(
-        padding = padding,
-        navigateToTransactionHistory,
-        navigateToAccountInterest,
-        accountInfo,
-    )
+    LaunchedEffect(Unit) {
+        viewModel.getAccountDetail()
+    }
+
+    val accountInfo = viewModel.uiState.value
+
+
+    if (accountInfo == null) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "로딩 중...")
+        }
+    } else {
+        AccountDetailScreen(
+            padding = padding,
+            navigateToTransactionHistory,
+            navigateToAccountInterest,
+            accountInfo,
+        )
+    }
 }
 
 @Composable
@@ -52,7 +71,7 @@ private fun AccountDetailScreen(
     padding: PaddingValues,
     navigateToTransactionHistory: () -> Unit,
     navigateToAccountInterest: () -> Unit,
-    accountInfo: AccountDetailUiModel,
+    accountInfo: AccountDetailUiModel?,
     modifier: Modifier = Modifier
 ) {
     val topBarState = TopBarState(
@@ -140,7 +159,7 @@ private fun PreviewThisScreen() {
         navigateToAccountInterest = {},
         navigateToTransactionHistory = {},
         accountInfo = AccountDetailUiModel(
-            depositCount = 1,
+            depositCount = 2,
             accountState = "정상",
             lastTransaction = "2025.05.01",
             contractPeriod = 6

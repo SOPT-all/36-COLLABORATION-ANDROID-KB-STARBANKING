@@ -1,6 +1,7 @@
 package org.sopt.starbanking.data.service
 
 import org.sopt.starbanking.data.dto.base.BaseResponse
+import org.sopt.starbanking.data.dto.response.ResponseAccountInterest
 import org.sopt.starbanking.data.dto.response.ResponseAccountState
 import org.sopt.starbanking.data.dto.response.ResponseSavingsState
 import org.sopt.starbanking.data.dto.response.ResponseTotalAccountState
@@ -21,6 +22,12 @@ interface StarBankingService {
         @Path("account-id") accountId:Long
     ): BaseResponse<ResponseSavingsState>
 
+    // 특정 적금 계좌 이율 조회
+    @GET("/api/v1/accounts/{account-id}/rates")
+    suspend fun getAccountInterest(
+        @Path("account-id") accountId: Long
+    ): BaseResponse<ResponseAccountInterest>
+  
     // 전체 계좌 조회
     @GET("/api/v1/accounts")
     suspend fun getTotalAccountState(): BaseResponse<ResponseTotalAccountState>
