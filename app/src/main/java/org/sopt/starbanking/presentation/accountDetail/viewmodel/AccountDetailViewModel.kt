@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.sopt.starbanking.data.service.StarBankingService
-import timber.log.Timber
 import javax.inject.Inject
 
 data class AccountDetailUiModel(
@@ -30,9 +29,6 @@ class AccountDetailViewModel @Inject constructor(
             runCatching {
                 starBankingService.getAccountState(accountID)
             }.onSuccess { response ->
-
-                Timber.tag("SavingsViewModel").d("✅ API call success: $response")
-
                 val data = response.data
                 if (data != null) {
                     _uiState.value = AccountDetailUiModel(
@@ -44,8 +40,6 @@ class AccountDetailViewModel @Inject constructor(
                 }
             }.onFailure {
                 // TODO: 에러 처리 로직
-                Timber.tag("SavingsViewModel").d("here error")
-                Timber.tag("SavingsViewModel").e("❌ API call failed: ${it.message}")
             }
         }
     }

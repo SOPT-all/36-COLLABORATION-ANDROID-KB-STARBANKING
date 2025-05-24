@@ -1,6 +1,7 @@
 package org.sopt.starbanking.data.service
 
 import org.sopt.starbanking.data.dto.base.BaseResponse
+import org.sopt.starbanking.data.dto.response.ResponseAccountInterest
 import org.sopt.starbanking.data.dto.response.ResponseAccountState
 import org.sopt.starbanking.data.dto.response.ResponseSavingsState
 import retrofit2.http.GET
@@ -19,4 +20,10 @@ interface StarBankingService {
     suspend fun getSavingsState(
         @Path("account-id") accountId:Long
     ): BaseResponse<ResponseSavingsState>
+
+    // 특정 적금 계좌 이율 조회
+    @GET("/api/v1/accounts/{account-id}/rates")
+    suspend fun getAccountInterest(
+        @Path("account-id") accountId: Long
+    ): BaseResponse<ResponseAccountInterest>
 }

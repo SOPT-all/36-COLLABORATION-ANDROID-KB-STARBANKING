@@ -21,7 +21,10 @@ import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
 @Composable
 fun AccountInterestTable(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    startDate: String?,
+    endDate: String?,
+    baseRate: String?
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
@@ -76,7 +79,7 @@ fun AccountInterestTable(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "2025.04.25~2026.04.24",
+                    text = "${startDate}~${endDate}",
                     style = defaultkbStarBankingTypography.body3_L,
                 )
             }
@@ -91,7 +94,7 @@ fun AccountInterestTable(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "2.45",
+                    text = baseRate?: "",
                     style = defaultkbStarBankingTypography.body3_L,
                 )
             }
@@ -103,5 +106,9 @@ fun AccountInterestTable(
 @Preview
 @Composable
 private fun PreviewAccountInterestTable() {
-    AccountInterestTable()
+    AccountInterestTable(
+        startDate = null,
+        endDate = null,
+        baseRate = null
+    )
 }

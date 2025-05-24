@@ -20,22 +20,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.serialization.SerialName
 import org.sopt.starbanking.R
 import org.sopt.starbanking.core.extension.noRippleClickable
+import org.sopt.starbanking.presentation.accountInterest.viewmodel.PreferentialRateUiModel
 import org.sopt.starbanking.ui.theme.defaultStarBankingColors
 import org.sopt.starbanking.ui.theme.defaultkbStarBankingTypography
 
 @Composable
 fun PreferentialInterestCard(
+    imgIndex: Int,
+    savingAccountName: String?,
+    name: String?,
+    rate: String?,
+    startDate: String?,
+    endDate: String?,
     modifier: Modifier = Modifier,
-//    title: String,
-//    rate: String,
-//    period: String,
-//    onClick: () -> Unit
 ) {
+    val imageRes = when (imgIndex) {
+        0 -> R.drawable.img_card_1
+        1 -> R.drawable.img_card_2
+        2 -> R.drawable.img_card_3
+        else -> R.drawable.img_card_1
+    }
     Column(
         modifier = modifier
-            .width(153.dp)
+            .width(165.dp)
             .background(
                 color = defaultStarBankingColors.yellow1,
                 shape = RoundedCornerShape(12.dp)
@@ -48,16 +58,15 @@ fun PreferentialInterestCard(
                 .padding(start = 12.dp, end = 12.dp, top = 14.dp, bottom = 4.dp)
         ) {
             Text(
-                text = "KB내맘대로적금장기\n" +
-                        "거래우대이율",
+                text = "${savingAccountName}\n${name}",
                 style = defaultkbStarBankingTypography.body3_M,
                 modifier = Modifier.align(Alignment.TopStart)
             )
             Image(
-                painter = painterResource(R.drawable.img_card_1),
+                painter = painterResource(imageRes),
                 contentDescription = "캐릭터",
                 modifier = Modifier
-                    .size(50.dp)
+                    .size(45.dp)
                     .align(Alignment.BottomEnd)
             )
         }
@@ -73,7 +82,7 @@ fun PreferentialInterestCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("우대이율", style = defaultkbStarBankingTypography.caption1_L)
-                Text("0.1", style = defaultkbStarBankingTypography.caption1_L)
+                Text(text = rate ?: "", style = defaultkbStarBankingTypography.caption1_L)
             }
 
             Spacer(modifier = modifier.height(6.dp))
@@ -83,7 +92,7 @@ fun PreferentialInterestCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("기간", style = defaultkbStarBankingTypography.caption1_L)
-                Text("04.23~10.22", style = defaultkbStarBankingTypography.caption1_L)
+                Text("${startDate}~${endDate}", style = defaultkbStarBankingTypography.caption1_L)
             }
             Spacer(modifier = modifier.height(18.dp))
 
@@ -104,5 +113,12 @@ fun PreferentialInterestCard(
 @Preview
 @Composable
 private fun PreviewPreferentialInterestCard() {
-    PreferentialInterestCard()
+    PreferentialInterestCard(
+        imgIndex = 1,
+        savingAccountName = "",
+        name = "",
+        rate = "",
+        startDate = "",
+        endDate = ""
+    )
 }
