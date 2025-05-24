@@ -10,7 +10,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.sopt.starbanking.core.navigation.Route
-import org.sopt.starbanking.presentation.allAcounts.navigation.navigateToAllAccounts
+import org.sopt.starbanking.presentation.allAccount.navigation.navigateToAllAccounts
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToAccountInterest
 import org.sopt.starbanking.presentation.accountDetail.navigation.navigateToTransactionHistory
 import org.sopt.starbanking.presentation.accountInterest.navigation.navigateToAccountDetail
@@ -23,7 +23,7 @@ class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-    val startDestination = Route.Home
+    val startDestination = Route.AllAccounts
 
     fun navigateToHome(navOptions: NavOptions? = null) {
         navController.navigateToHome(
@@ -36,7 +36,7 @@ class MainNavigator(
         )
     }
 
-    fun navigateToAllAccounts(navOptions: NavOptions? = null){
+    fun navigateToAllAccounts(navOptions: NavOptions? = null) {
         navController.navigateToAllAccounts(
             navOptions ?: navOptions {
                 popUpTo(navController.graph.findStartDestination().id) {
@@ -45,6 +45,7 @@ class MainNavigator(
                 launchSingleTop = true
             }
         )
+    }
     fun navigateToTransactionHistory() {
         navController.navigateToTransactionHistory()
     }
