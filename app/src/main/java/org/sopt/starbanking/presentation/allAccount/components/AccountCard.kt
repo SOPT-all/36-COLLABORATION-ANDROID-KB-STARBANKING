@@ -94,7 +94,7 @@ fun AccountCard(
 
                 Spacer(Modifier.height(15.dp))
                 Text(
-                    balance,
+                    text = balance,
                     style = StarBankingTheme.typography.title2_SB,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.End

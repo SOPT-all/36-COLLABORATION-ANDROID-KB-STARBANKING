@@ -32,7 +32,7 @@ data class AccountData(
     val accountNumber: String,
     val startDate: String,
     val endDate: String,
-    val balance: String
+    val balance: Int
 )
 
 @Composable
@@ -80,7 +80,7 @@ fun SimpleAccordionItem(
                         accountNumber = account.accountNumber,
                         startDate = account.startDate,
                         endDate = account.endDate,
-                        balance = account.balance,
+                        balance = account.balance.toString() + "원",
                         onClick = { }
                     )
                 }
@@ -95,8 +95,8 @@ fun SimpleAccordionItem(
 @Preview
 fun ShowSimpleAccordionItem(){
     val depositAccounts = listOf(
-        AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원"),
-        AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", "10,000원")
+        AccountData("KB맑은하늘적금", "512601-01-250726", "2025.04.23", "2025.10.23", 10000),
+        AccountData("KB내맘대로적금", "512601-01-250726", "2025.04.23", "2025.10.23", 10000)
     )
 
     SimpleAccordionItem(
