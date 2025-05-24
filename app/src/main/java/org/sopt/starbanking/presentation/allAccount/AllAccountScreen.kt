@@ -11,9 +11,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -48,6 +54,42 @@ private fun AllAccountsScreen(
     viewModel: AllAccountViewModel = hiltViewModel()
 ) {
     val accountState by viewModel.accountState
+    val topBarState = TopBarState(
+        title = stringResource(R.string.TopBar_View1_title),
+        navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left),
+        navigationDescription = stringResource(R.string.ic_arrow_left_description),
+        onNavigationClick = { /* 뒤로가기 */ },
+        actions = listOf(
+            TopBarAction(
+                icon = ImageVector.vectorResource(R.drawable.ic_home),
+                contentDescription = stringResource(R.string.ic_home_description),
+                onClick = { /* 홈 */ }
+            ),
+            TopBarAction(
+                icon = ImageVector.vectorResource(R.drawable.ic_menu),
+                contentDescription = stringResource(R.string.ic_menu_description),
+                onClick = { /* 설정 또는 검색 */ }
+            )
+        )
+    )
+    val (selectedAccordion, setSelectedAccordion) = remember { mutableStateOf("예금 · 적금") }
+
+    val depositAccounts = accountState?.accounts?.map {
+        AccountData(
+            title = it.name,
+            accountNumber = it.accountNumber,
+            startDate = it.startDate,
+            endDate = it.endDate,
+            balance = it.accountBalance,
+        )
+    }?: emptyList()
+
+    val accordionList = listOf(
+        "예금 · 적금",
+        "대출",
+        "보험 · 공제",
+        "퇴직연금"
+    )
 
     if (accountState == null){
         // 아직 데이터 로딩 중
@@ -59,76 +101,35 @@ private fun AllAccountsScreen(
         }
     } else {
         // 데이터 표시
-        Column (
+        LazyColumn (
             modifier = modifier
                 .fillMaxSize()
                 .padding(WindowInsets.statusBars.asPaddingValues())
                 .background(StarBankingTheme.colors.white),
         ) {
-            val topBarState = TopBarState(
-                title = stringResource(R.string.TopBar_View1_title),
-                navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left),
-                navigationDescription = stringResource(R.string.ic_arrow_left_description),
-                onNavigationClick = { /* 뒤로가기 */ },
-                actions = listOf(
-                    TopBarAction(
-                        icon = ImageVector.vectorResource(R.drawable.ic_home),
-                        contentDescription = stringResource(R.string.ic_home_description),
-                        onClick = { /* 홈 */ }
-                    ),
-                    TopBarAction(
-                        icon = ImageVector.vectorResource(R.drawable.ic_menu),
-                        contentDescription = stringResource(R.string.ic_menu_description),
-                        onClick = { /* 설정 또는 검색 */ }
-                    )
-                )
-            )
-            CustomTopBar(topBarState)
-            Spacer(modifier = Modifier.height(18.dp))
-            HomeTabMenu()
-            Spacer(modifier = Modifier.height(23.dp))
-
-            Column {
-                val depositAccounts = accountState!!.accounts.map {
-                    AccountData(
-                        title = it.name,
-                        accountNumber = it.accountNumber,
-                        startDate = it.startDate,
-                        endDate = it.endDate,
-                        balance = it.accountBalance,
-                    )
-                }
-
+            item {
+                CustomTopBar(topBarState)
+                Spacer(modifier = Modifier.height(18.dp))
+                HomeTabMenu()
+                Spacer(modifier = Modifier.height(23.dp))
+            }
+            items(accordionList) { title ->
                 SimpleAccordionItem(
-                    title = "예금 · 적금",
-                    isExpanded = true,
-                    onToggle = { /* toggle 상태 처리 */ },
-                    accounts = depositAccounts
-                )
-
-                SimpleAccordionItem(
-                    title = "대출",
-                    isExpanded = false,
-                    onToggle = {  },
-                    accounts = depositAccounts
-                )
-
-                SimpleAccordionItem(
-                    title = "보험 · 공제",
-                    isExpanded = false,
-                    onToggle = {  },
-                    accounts = depositAccounts
-                )
-
-                SimpleAccordionItem(
-                    title = "퇴직연금",
-                    isExpanded = false,
-                    onToggle = {  },
+                    title = title,
+                    isExpanded = selectedAccordion == title,
+                    onToggle = {
+                        setSelectedAccordion(
+                            if (selectedAccordion == title) "" else title
+                        )
+                    },
                     accounts = depositAccounts
                 )
             }
-            Spacer(Modifier.height(23.dp))
-            BusinessAccountShortcut({})
+
+            item {
+                Spacer(Modifier.height(23.dp))
+                BusinessAccountShortcut({})
+            }
         }
     }
 }

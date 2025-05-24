@@ -70,11 +70,13 @@ fun SimpleAccordionItem(
         Spacer(modifier = Modifier.height(14.dp))
 
         AnimatedVisibility(visible = isExpanded) {
-            LazyColumn(
+            Column(
                 verticalArrangement = Arrangement.spacedBy(11.dp),
-                contentPadding = PaddingValues(14.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 14.dp)
             ) {
-                items(accounts) { account ->
+                accounts.forEach { account ->
                     AccountCard(
                         title = account.title,
                         accountNumber = account.accountNumber,
