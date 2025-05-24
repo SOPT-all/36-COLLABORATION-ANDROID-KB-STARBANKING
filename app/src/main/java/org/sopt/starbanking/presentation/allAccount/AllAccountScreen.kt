@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
@@ -106,6 +107,9 @@ private fun AllAccountsScreen(
                 .fillMaxSize()
                 .padding(WindowInsets.statusBars.asPaddingValues())
                 .background(StarBankingTheme.colors.white),
+            contentPadding = PaddingValues(
+                bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() + 23.dp
+            )
         ) {
             item {
                 CustomTopBar(topBarState)
