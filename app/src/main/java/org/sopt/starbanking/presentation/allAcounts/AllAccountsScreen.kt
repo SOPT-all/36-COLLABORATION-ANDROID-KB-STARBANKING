@@ -21,6 +21,7 @@ import org.sopt.starbanking.R
 import org.sopt.starbanking.core.components.CustomTopBar
 import org.sopt.starbanking.core.components.TopBarAction
 import org.sopt.starbanking.core.components.TopBarState
+import org.sopt.starbanking.core.navigation.Route
 import org.sopt.starbanking.presentation.allAcounts.components.AccountData
 import org.sopt.starbanking.presentation.allAcounts.components.BusinessAccountShortcut
 import org.sopt.starbanking.presentation.allAcounts.components.HomeTabMenu
@@ -28,16 +29,16 @@ import org.sopt.starbanking.presentation.allAcounts.components.SimpleAccordionIt
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
-fun HomeRoute(
+fun AllAccountsRoute(
     padding: PaddingValues
 ) {
-    HomeScreen(
+    AllAcountsScreen(
         padding = padding
     )
 }
 
 @Composable
-private fun HomeScreen(
+private fun AllAcountsScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
@@ -112,7 +113,7 @@ private fun HomeScreen(
 @Preview
 @Composable
 fun ShowHomeScreen(){
-    HomeScreen(
+    AllAcountsScreen(
         padding = PaddingValues(0.dp)
     )
 }
