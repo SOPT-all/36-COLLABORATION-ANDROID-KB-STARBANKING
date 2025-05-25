@@ -10,6 +10,7 @@ import org.sopt.starbanking.presentation.allAccount.navigation.allAccountsNavGra
 import org.sopt.starbanking.presentation.accountDetail.navigation.accountDetailGraph
 import org.sopt.starbanking.presentation.accountInterest.navigation.accountInterestGraph
 import org.sopt.starbanking.presentation.home.navigation.homeNavGraph
+import org.sopt.starbanking.presentation.savingsDetail.navigation.savingDetailNavGraph
 
 @Composable
 fun MainNavHost(
@@ -25,13 +26,20 @@ fun MainNavHost(
             startDestination = navigator.startDestination
         ) {
             homeNavGraph(padding = padding)
-            allAccountsNavGraph(padding = padding)
+            allAccountsNavGraph(
+                padding = padding,
+                navigateToSavingDetail = navigator::navigateToSavingDetail
+            )
             accountDetailGraph(
                 padding = padding,
-                navigateToTransactionHistory = navigator::navigateToTransactionHistory,
+                navigateToTransactionHistory = navigator::navigateToSavingDetail,
                 navigateToAccountInterest = navigator::navigateToAccountInterest
             )
             accountInterestGraph(
+                padding = padding,
+                navigateToAccountDetail = navigator::navigateToAccountDetail
+            )
+            savingDetailNavGraph(
                 padding = padding,
                 navigateToAccountDetail = navigator::navigateToAccountDetail
             )

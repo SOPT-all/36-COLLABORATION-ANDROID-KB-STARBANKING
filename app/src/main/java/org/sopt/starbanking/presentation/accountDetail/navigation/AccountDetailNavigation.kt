@@ -7,9 +7,6 @@ import androidx.navigation.compose.composable
 import org.sopt.starbanking.core.navigation.Route
 import org.sopt.starbanking.presentation.accountDetail.AccountDetailRoute
 
-fun NavController.navigateToTransactionHistory() {
-    navigate(Route.TransactionHistory)
-}
 
 fun NavController.navigateToAccountInterest() {
     navigate(Route.AccountInterest)

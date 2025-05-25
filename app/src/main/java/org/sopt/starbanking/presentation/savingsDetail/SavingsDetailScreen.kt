@@ -3,7 +3,6 @@ package org.sopt.starbanking.presentation.savingsDetail
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -48,8 +47,18 @@ import org.sopt.starbanking.core.extension.noRippleClickable
 import org.sopt.starbanking.ui.theme.StarBankingTheme
 
 @Composable
+fun SavingDetailRoute(
+    navigateToAccountDetail: () -> Unit,
+) {
+    SavingsDetailScreen(
+        navigateToAccountDetail,
+    )
+}
+
+@Composable
 fun SavingsDetailScreen(
-    accountId: Long,
+    navigateToAccountDetail: () -> Unit,
+    accountId: Long = 1,
     viewModel: SavingsDetailViewModel = hiltViewModel()
 ) {
     val savingsState = viewModel.savingsState.value
@@ -131,9 +140,12 @@ fun SavingsDetailScreen(
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(
+                    modifier = Modifier.noRippleClickable {
+                        navigateToAccountDetail()
+                    },
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_settings_android),
                     contentDescription = "설정",
-                    tint = StarBankingTheme.colors.black
+                    tint = StarBankingTheme.colors.black,
                 )
             }
 

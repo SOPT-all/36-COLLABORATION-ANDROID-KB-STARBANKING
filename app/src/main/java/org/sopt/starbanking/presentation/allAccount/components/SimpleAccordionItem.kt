@@ -5,14 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -40,7 +37,8 @@ fun SimpleAccordionItem(
     title: String,
     isExpanded: Boolean,
     onToggle: () -> Unit,
-    accounts: List<AccountData>
+    accounts: List<AccountData>,
+    onClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -83,7 +81,7 @@ fun SimpleAccordionItem(
                         startDate = account.startDate,
                         endDate = account.endDate,
                         balance = account.balance.toString() + "원",
-                        onClick = { }
+                        onClick = { onClick() }
                     )
                 }
             }
@@ -105,6 +103,7 @@ fun ShowSimpleAccordionItem(){
         title = "예금, 적금",
         isExpanded = true,
         onToggle = {},
-        accounts = depositAccounts
+        accounts = depositAccounts,
+        onClick = {}
     )
 }

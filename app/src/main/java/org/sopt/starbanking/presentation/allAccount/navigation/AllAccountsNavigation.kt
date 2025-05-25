@@ -8,16 +8,22 @@ import androidx.navigation.compose.composable
 import org.sopt.starbanking.core.navigation.Route
 import org.sopt.starbanking.presentation.allAccount.AllAccountsRoute
 
-fun NavController.navigateToAllAccounts(navOptions: NavOptions) {
-    navigate(Route.AllAccounts, navOptions)
+fun NavController.navigateToSavingDetail() {
+    navigate(Route.SavingDetail)
+}
+
+fun NavController.navigateToAllAccounts() {
+    navigate(Route.AllAccounts)
 }
 
 fun NavGraphBuilder.allAccountsNavGraph(
     padding: PaddingValues,
+    navigateToSavingDetail: () -> Unit
 ) {
     composable<Route.AllAccounts> {
         AllAccountsRoute(
             padding = padding,
+            navigateToSavingDetail
         )
     }
 }
